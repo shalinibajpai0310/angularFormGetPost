@@ -1,0 +1,1 @@
+angular ngMessages along with dummy GET and POST request.

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link data-require="bootstrap-css@*" data-semver="4.0.0-alpha.4" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" />
+  <link data-require="bootstrap@*" data-semver="4.0.0-alpha.2" rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css" />
+  <script data-require="bootstrap@*" data-semver="4.0.0-alpha.2" src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-route.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.4/ui-bootstrap-tpls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-messages.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script>
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+  <script src="script.js"></script>
+</head>
+
+<body ng-app="myApp">
+  <form name="exampleForm" class="elegant-aero" ng-controller="myCtrl">
+    <label>First Name:</label>
+    <input type="text" name="userFirstName" ng-model="formInfo.firstName" required="" />
+    <div ng-messages="exampleForm.userFirstName.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
+    <label>Last Name:</label>
+    <input type="text" name="userLastName" ng-model="formInfo.lastName" required="" />
+    <div ng-messages="exampleForm.userLastName.$error">
+      <div ng-message="required">This field is required</div>
+    </div>
+    <label>Email Address:</label>
+    <input type="email" name="userEmail" ng-model="formInfo.email" required="" />
+    <div ng-messages="exampleForm.userEmail.$error">
+      <div ng-message="required">This field is required</div>
+      <div ng-message="email">Enter valid email id</div>
+    </div>
+    <label>Phone Number:</label>
+    <input type="text" name="userPhoneNumber" ng-model="formInfo.phoneNumber" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" required="" />
+    <div ng-messages="exampleForm.userPhoneNumber.$error">
+      <div ng-message="required">This field is required</div>
+      <div ng-message="pattern">Must be a valid 10 digit phone number</div>
+    </div>
+    <label>User Message:</label>
+    <textarea type="text" name="userMessage" class="form-control" rows="4" ng-model="formInfo.message" ng-minlength="10" ng-maxlength="100" required=""></textarea>
+    <div ng-messages="exampleForm.userMessage.$error">
+      <div ng-message="required">This field is required</div>
+      <div ng-message="minlength">Message must be over 10 characters</div>
+      <div ng-message="maxlength">Message must not exceed 100 characters</div>
+    </div>
+    <div class="text-right">
+      <!--You can add col-lg-12 if you want -->
+      <button type="submit" class="btn-info btn-sm" ng-click="submit()">Submit</button>
+      <input type="button" class="btn-info btn-sm" ng-click="getPrevData()" value="getdata">
+    </div>
+  </form>
+</body>
+
+</html>
