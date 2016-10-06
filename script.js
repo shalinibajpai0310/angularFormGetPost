@@ -1,6 +1,6 @@
 // Code goes here
 
-var app = angular.module('myApp', ['ngRoute','ngMessages','ngAnimate', 'ngSanitize','ui.bootstrap']);
+var app = angular.module('myApp', ['ngRoute', 'ngMessages', 'ngAnimate', 'ngSanitize', 'ui.bootstrap']);
 
 app.controller('myCtrl', function($scope, $q, postUserDetail, $uibModal) {
   $scope.formInfo = {};
@@ -13,21 +13,22 @@ app.controller('myCtrl', function($scope, $q, postUserDetail, $uibModal) {
       window.location.reload();
     })
 
+
   }
-  
-  $scope.getPrevData = function(){
-    postUserDetail.getUserData().then(function(res){
-       $uibModal.open({
-      templateUrl: 'info.html',
-      controller: 'ModalInstanceCtrl',
-      resolve:{
-        items : function(){
-          return res;
+
+  $scope.getPrevData = function() {
+    postUserDetail.getUserData().then(function(res) {
+      $uibModal.open({
+        templateUrl: 'info.html',
+        controller: 'ModalInstanceCtrl',
+        resolve: {
+          items: function() {
+            return res;
+          }
         }
-      }
-    });
-      
-    },function(err){
+      });
+
+    }, function(err) {
       alert("Bad GET REQUEST");
     })
   }
@@ -40,7 +41,7 @@ app.factory('postUserDetail', function($http, $q) {
   postUser.postDetails = function(userData) {
       var defer = $q.defer();
       var options = {
-        url: 'https://run.plnkr.co/31ZjBXft48uqyycA/data.json',
+        url: './data.json',
         method: 'POST',
         data: userData
       };
@@ -57,9 +58,9 @@ app.factory('postUserDetail', function($http, $q) {
     postUser.getUserData = function() {
       var defer = $q.defer();
       var options = {
-        url: "https://run.plnkr.co/31ZjBXft48uqyycA/data.json",
+        url: "./data.json",
         method: 'GET',
-        
+
       };
 
       $http(options).then(function(response) {
@@ -76,6 +77,6 @@ app.factory('postUserDetail', function($http, $q) {
 })
 
 
-app.controller('ModalInstanceCtrl',function($scope,items){
+app.controller('ModalInstanceCtrl', function($scope, items) {
   $scope.info = items;
 })
